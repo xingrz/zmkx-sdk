@@ -1,4 +1,5 @@
 import hid
+import random
 from . import comm_pb2 as comm
 from . import delimited
 
@@ -68,7 +69,7 @@ class Device(object):
         msg_in = bytearray()
 
         while True:
-            buf = self._hid.read(1 + REPORT_COUNT, timeout=1000)
+            buf = self._hid.read(1 + REPORT_COUNT)
             cnt = buf[1]
             msg_in += buf[2:cnt + 2]
             if cnt < PAYLOAD_SIZE:
@@ -91,3 +92,13 @@ class Device(object):
         d2h = self._call(h2d)
 
         return d2h.motor_state
+
+    def eink_set_image(self, image):
+        h2d = comm.MessageH2D()
+        h2d.action = comm.Action.EINK_SET_IMAGE
+        h2d.eink_image.id = round(random.random() * 1000000)
+        h2d.eink_image.bits = image
+
+        d2h = self._call(h2d)
+
+        return d2h.eink_image

@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 import inquirer
 import math
 from time import sleep
+from PIL import Image
 import zmkx
 from zmkx.comm_pb2 import MotorState
 
@@ -91,6 +92,29 @@ def knob(serial, monitor):
             pass
 
 
+def eink(serial, set, dither=False):
+    device = get_device(serial, features=['knob'])
+    if device is None:
+        return
+
+    CANVAS_WIDTH = 128
+    CANVAS_HEIGHT = 296
+
+    with device.open() as device, Image.open(set) as image:
+        image.thumbnail((CANVAS_WIDTH, CANVAS_HEIGHT))
+
+        center = ((CANVAS_WIDTH - image.width) // 2,
+                  (CANVAS_HEIGHT - image.height) // 2)
+
+        canvas = Image.new('L', (CANVAS_WIDTH, CANVAS_HEIGHT), color=0xFF)
+        canvas.paste(image, center)
+
+        canvas = canvas.convert(
+            '1', dither=Image.FLOYDSTEINBERG if dither else Image.NONE)
+
+        device.eink_set_image(canvas.tobytes())
+
+
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('-s', '--serial', help='指定所操作的设备的序列号')
@@ -105,6 +129,12 @@ if __name__ == '__main__':
     knob_parser = subparsers.add_parser('knob', help='旋钮控制')
     knob_parser.add_argument('-m', '--monitor', action='store_true',
                              help='实时监控电机状态')
+
+    eink_parser = subparsers.add_parser('eink', help='墨水屏控制')
+    eink_parser.add_argument('--set',
+                             help='指定要显示的图片文件')
+    eink_parser.add_argument('-d', '--dither', action='store_true',
+                             help='使用抖动')
 
     kwargs = vars(parser.parse_args())
     command = kwargs.pop('command')

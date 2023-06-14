@@ -1,3 +1,4 @@
 hid
 protobuf
 inquirer
+pillow
