@@ -83,3 +83,11 @@ class Device(object):
         d2h = self._call(h2d)
 
         return d2h.version
+
+    def motor_get_state(self):
+        h2d = comm.MessageH2D()
+        h2d.action = comm.Action.MOTOR_GET_STATE
+
+        d2h = self._call(h2d)
+
+        return d2h.motor_state
