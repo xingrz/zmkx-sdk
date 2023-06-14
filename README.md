@@ -1,8 +1,72 @@
 zmkx-sdk
 ========
 
+[![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![commits][commits-img]][commits-url] [![tags][tags-img]][tags-url]
+
 [zmkx.app](https://github.com/xingrz/zmkx.app) 的 Python 实现，包含一个供二次开发的库和一个简单的 CLI 客户端。
+
+## 安装
+
+需要 Python 3.8 以上。
+
+```sh
+pip install -r requirements.txt
+```
+
+## 快速上手
+
+本仓库提供了一个最简单的 [`set_image.py`](set_image.py) 演示换图功能：
+
+```sh
+python3 set_image.py 你的图片.jpg
+```
+
+## 命令行
+
+[`cli.py`](cli.py) 演示了如何通过 ZMKX API 来操作设备。命令格式如下：
+
+```
+python3 cli.py [-s SERIAL] command ...
+```
+
+完整命令说明请参考 `cli.py -h`。
+
+#### 列出设备
+
+```
+$ python3 cli.py list
+* HelloWord HW-75 Dynamic (序列号: 34314704001A002B)
+* HelloWord HW-75 Keyboard (序列号: 55895648066BFF53)
+```
+
+#### 监控电机状态
+
+```
+$ python3 cli.py knob --monitor
+控制模式: 角度 | 当前角度:  23.7° | 当前速度:   -0.01 rad/s | 目标角度:  30.6° | 目标速度:    1.76 rad/s | 目标电压:   0.035 V
+```
+
+#### 换图
+
+```
+$ python3 cli.py eink --set 图片.jpg --dither
+```
+
+## 相关链接
+
+* [zmkx.app](https://github.com/xingrz/zmkx.app)
+* [ZMK for HW-75](https://github.com/xingrz/zmk-config_helloword_hw-75)
+* [peng-zhihui/HelloWord-Keyboard](https://github.com/peng-zhihui/HelloWord-Keyboard)
 
 ## 协议
 
 [MIT License](LICENSE)
+
+[license-img]: https://img.shields.io/github/license/xingrz/zmkx-sdk?style=flat-square
+[license-url]: LICENSE
+[issues-img]: https://img.shields.io/github/issues/xingrz/zmkx-sdk?style=flat-square
+[issues-url]: https://github.com/xingrz/zmkx-sdk/issues
+[commits-img]: https://img.shields.io/github/last-commit/xingrz/zmkx-sdk?style=flat-square
+[commits-url]: https://github.com/xingrz/zmkx-sdk/commits/master
+[tags-img]: https://img.shields.io/github/v/tag/xingrz/zmkx-sdk?style=flat-square
+[tags-url]: https://github.com/xingrz/zmkx-sdk/tags
