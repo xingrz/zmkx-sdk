@@ -14,4 +14,4 @@ def decode(buffer):
     """Decode a delimited message into a protobuf message."""
     (size, pos) = _DecodeVarint32(buffer, 0)
     msg = buffer[pos:pos + size]
-    return msg
+    return bytes(msg)
