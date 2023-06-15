@@ -64,7 +64,8 @@ class Device(object):
         for offset in range(0, len(msg_out), PAYLOAD_SIZE):
             buf = msg_out[offset:offset + PAYLOAD_SIZE]
             hdr = bytes([self.usage, len(buf)])
-            self._hid.write(hdr + buf.ljust(PAYLOAD_SIZE, b'\x00'))
+            buf = hdr + buf.ljust(PAYLOAD_SIZE, b'\x00')
+            self._hid.write(buf)
 
         msg_in = bytearray()
 
