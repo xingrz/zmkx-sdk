@@ -1,7 +1,7 @@
 zmkx-sdk [![.github/workflows/build.yml](https://github.com/xingrz/zmkx-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/xingrz/zmkx-sdk/actions/workflows/build.yml)
 ========
 
-[![release][release-img]][release-url] [![downloads][downloads-img]][downloads-url] [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![stars][stars-img]][stars-url] [![commits][commits-img]][commits-url]
+[![pypi][pypi-img]][pypi-url] [![downloads][downloads-img]][downloads-url] [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![stars][stars-img]][stars-url] [![commits][commits-img]][commits-url]
 
 [zmkx.app](https://github.com/xingrz/zmkx.app) 的 Python 实现，包含一个供二次开发的库和一个简单的 CLI 客户端。
 
@@ -10,7 +10,7 @@ zmkx-sdk [![.github/workflows/build.yml](https://github.com/xingrz/zmkx-sdk/acti
 需要 Python 3.8 以上。
 
 ```sh
-pip3 install -e .
+pip3 install -U zmkx
 ```
 
 ## 快速上手
@@ -62,10 +62,10 @@ $ zmkx eink --set 图片.jpg --dither
 
 [MIT License](LICENSE)
 
-[release-img]: https://img.shields.io/github/v/release/xingrz/zmkx-sdk?style=flat-square
-[release-url]: https://github.com/xingrz/zmkx-sdk/releases/latest
-[downloads-img]: https://img.shields.io/github/downloads/xingrz/zmkx-sdk/total?style=flat-square
-[downloads-url]: https://github.com/xingrz/zmkx-sdk/releases
+[pypi-img]: https://img.shields.io/pypi/v/zmkx?style=flat-square
+[pypi-url]: https://pypi.org/project/zmkx/
+[downloads-img]: https://img.shields.io/pypi/dm/zmkx?style=flat-square
+[downloads-url]: https://pypi.org/project/zmkx/
 [license-img]: https://img.shields.io/github/license/xingrz/zmkx-sdk?style=flat-square
 [license-url]: LICENSE
 [issues-img]: https://img.shields.io/github/issues/xingrz/zmkx-sdk?style=flat-square
