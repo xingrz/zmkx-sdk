@@ -10,7 +10,7 @@ zmkx-sdk [![.github/workflows/test.yml](https://github.com/xingrz/zmkx-sdk/actio
 需要 Python 3.8 以上。
 
 ```sh
-pip install -r requirements.txt
+pip3 install -e .
 ```
 
 ## 快速上手
@@ -23,18 +23,18 @@ python3 set_image.py 你的图片.jpg
 
 ## 命令行
 
-[`cli.py`](cli.py) 演示了如何通过 ZMKX API 来操作设备。命令格式如下：
+本仓库实现了一个命令行工具 [`zmkx`](bin/zmkx) 来操作设备，命令格式如下：
 
 ```
-python3 cli.py [-s SERIAL] command ...
+zmkx [-s SERIAL] command ...
 ```
 
-完整命令说明请参考 `cli.py -h`。
+完整命令说明请参考 `zmkx -h`。
 
 #### 列出设备
 
 ```
-$ python3 cli.py list
+$ zmkx list
 * HelloWord HW-75 Dynamic (序列号: 34314704001A002B)
 * HelloWord HW-75 Keyboard (序列号: 55895648066BFF53)
 ```
@@ -42,14 +42,14 @@ $ python3 cli.py list
 #### 监控电机状态
 
 ```
-$ python3 cli.py knob --monitor
+$ zmkx knob --monitor
 控制模式: 角度 | 当前角度:  23.7° | 当前速度:   -0.01 rad/s | 目标角度:  30.6° | 目标速度:    1.76 rad/s | 目标电压:   0.035 V
 ```
 
 #### 换图
 
 ```
-$ python3 cli.py eink --set 图片.jpg --dither
+$ zmkx eink --set 图片.jpg --dither
 ```
 
 ## 相关链接

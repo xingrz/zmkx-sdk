@@ -1,4 +1,0 @@
-hid
-protobuf
-inquirer
-pillow

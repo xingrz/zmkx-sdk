@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 
-from argparse import ArgumentParser
-import inquirer
 import math
+from argparse import ArgumentParser
 from time import sleep
+
+import inquirer
 from PIL import Image
-import zmkx
+
+from zmkx import find_devices
 from zmkx.comm_pb2 import MotorState
 
 
 def list(serial, features):
-    devices = zmkx.find_devices(serial=serial, features=features)
+    devices = find_devices(serial=serial, features=features)
     for d in devices:
         print(f'* {d.manufacturer} {d.product} (序列号: {d.serial})')
 
 
 def get_device(serial, features=[]):
-    devices = zmkx.find_devices(serial=serial, features=features)
+    devices = find_devices(serial=serial, features=features)
 
     if len(devices) == 0:
         print('未找到符合条件的设备')

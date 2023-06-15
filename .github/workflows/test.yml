@@ -21,13 +21,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
-          cache: 'pip'
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install -U setuptools pytest
-          pip install -e .
+          pip3 install -U setuptools pytest
+          pip3 install -e .
 
       - name: Test with pytest
         run: pytest
