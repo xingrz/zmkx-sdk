@@ -1,7 +1,7 @@
 zmkx-sdk [![.github/workflows/build.yml](https://github.com/xingrz/zmkx-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/xingrz/zmkx-sdk/actions/workflows/build.yml)
 ========
 
-[![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![commits][commits-img]][commits-url] [![tags][tags-img]][tags-url]
+[![release][release-img]][release-url] [![downloads][downloads-img]][downloads-url] [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![stars][stars-img]][stars-url] [![commits][commits-img]][commits-url]
 
 [zmkx.app](https://github.com/xingrz/zmkx.app) 的 Python 实现，包含一个供二次开发的库和一个简单的 CLI 客户端。
 
@@ -62,11 +62,15 @@ $ zmkx eink --set 图片.jpg --dither
 
 [MIT License](LICENSE)
 
+[release-img]: https://img.shields.io/github/v/release/xingrz/zmkx-sdk?style=flat-square
+[release-url]: https://github.com/xingrz/zmkx-sdk/releases/latest
+[downloads-img]: https://img.shields.io/github/downloads/xingrz/zmkx-sdk/total?style=flat-square
+[downloads-url]: https://github.com/xingrz/zmkx-sdk/releases
 [license-img]: https://img.shields.io/github/license/xingrz/zmkx-sdk?style=flat-square
 [license-url]: LICENSE
 [issues-img]: https://img.shields.io/github/issues/xingrz/zmkx-sdk?style=flat-square
 [issues-url]: https://github.com/xingrz/zmkx-sdk/issues
+[stars-img]: https://img.shields.io/github/stars/xingrz/zmkx-sdk?style=flat-square
+[stars-url]: https://github.com/xingrz/zmkx-sdk/stargazers
 [commits-img]: https://img.shields.io/github/last-commit/xingrz/zmkx-sdk?style=flat-square
 [commits-url]: https://github.com/xingrz/zmkx-sdk/commits/master
-[tags-img]: https://img.shields.io/github/v/tag/xingrz/zmkx-sdk?style=flat-square
-[tags-url]: https://github.com/xingrz/zmkx-sdk/tags
