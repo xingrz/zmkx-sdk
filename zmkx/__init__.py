@@ -1,5 +1,9 @@
-import hid
+import os
 import random
+
+if 'CI' not in os.environ:
+    import hid
+
 from . import comm_pb2 as comm
 from . import delimited
 

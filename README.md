@@ -1,4 +1,4 @@
-zmkx-sdk
+zmkx-sdk [![.github/workflows/test.yml](https://github.com/xingrz/zmkx-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/xingrz/zmkx-sdk/actions/workflows/test.yml)
 ========
 
 [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![commits][commits-img]][commits-url] [![tags][tags-img]][tags-url]
