@@ -54,3 +54,27 @@ jobs:
         with:
           name: zmkx
           path: dist/*.whl
+
+  release:
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: zmkx
+          path: zmkx
+
+      - name: Publish release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: zmkx/*.whl
+          file_glob: true
+          tag: ${{ github.ref }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
