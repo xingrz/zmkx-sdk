@@ -1,4 +1,4 @@
-name: test
+name: build
 
 on:
   push:
@@ -29,3 +29,28 @@ jobs:
 
       - name: Test with pytest
         run: pytest
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip3 install -U setuptools build
+
+      - name: Build
+        run: python3 -m build --wheel
+
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: zmkx
+          path: dist/*.whl
