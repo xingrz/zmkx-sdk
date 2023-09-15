@@ -10,6 +10,9 @@ from PIL import Image
 from zmkx import find_devices
 from zmkx.comm_pb2 import MotorState
 
+EINK_WIDTH = 128
+EINK_HEIGHT = 296
+
 
 def list(serial, features):
     devices = find_devices(serial=serial, features=features)
@@ -96,27 +99,26 @@ def knob(serial, monitor):
             pass
 
 
-def eink(serial, set, dither=False):
+def eink(serial, set, dither, offset_x, offset_y, width, height, partial):
     device = get_device(serial, features=['knob'])
     if device is None:
         return
 
-    CANVAS_WIDTH = 128
-    CANVAS_HEIGHT = 296
-
     with device.open() as device, Image.open(set) as image:
-        image.thumbnail((CANVAS_WIDTH, CANVAS_HEIGHT))
+        image.thumbnail((width, height))
 
-        center = ((CANVAS_WIDTH - image.width) // 2,
-                  (CANVAS_HEIGHT - image.height) // 2)
+        center = ((width - image.width) // 2,
+                  (height - image.height) // 2)
 
-        canvas = Image.new('L', (CANVAS_WIDTH, CANVAS_HEIGHT), color=0xFF)
+        canvas = Image.new('L', (width, height), color=0xFF)
         canvas.paste(image, center)
 
         canvas = canvas.convert(
             '1', dither=Image.FLOYDSTEINBERG if dither else Image.NONE)
 
-        device.eink_set_image(canvas.tobytes())
+        device.eink_set_image(canvas.tobytes(),
+                              offset_x, offset_y, width, height,
+                              partial)
 
 
 if __name__ == '__main__':
@@ -139,6 +141,16 @@ if __name__ == '__main__':
                              help='指定要显示的图片文件')
     eink_parser.add_argument('-d', '--dither', action='store_true',
                              help='使用抖动')
+    eink_parser.add_argument('-x', '--offset-x', type=int, default=0,
+                             help='图片在屏幕上的横向偏移')
+    eink_parser.add_argument('-y', '--offset-y', type=int, default=0,
+                             help='图片在屏幕上的纵向偏移')
+    eink_parser.add_argument('-W', '--width', type=int, default=EINK_WIDTH,
+                             help='图片在屏幕上的宽度')
+    eink_parser.add_argument('-H', '--height', type=int, default=EINK_HEIGHT,
+                             help='图片在屏幕上的高度')
+    eink_parser.add_argument('-p', '--partial', action='store_true',
+                             help='使用局部刷新')
 
     kwargs = vars(parser.parse_args())
     command = kwargs.pop('command')

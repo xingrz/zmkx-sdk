@@ -98,11 +98,17 @@ class Device(object):
 
         return d2h.motor_state
 
-    def eink_set_image(self, image):
+    def eink_set_image(self, image, x=None, y=None, width=None, height=None, partial=False):
         h2d = comm.MessageH2D()
         h2d.action = comm.Action.EINK_SET_IMAGE
         h2d.eink_image.id = round(random.random() * 1000000)
         h2d.eink_image.bits = image
+        if x is not None and y is not None and width is not None and height is not None:
+            h2d.eink_image.x = x
+            h2d.eink_image.y = y
+            h2d.eink_image.width = width
+            h2d.eink_image.height = height
+        h2d.eink_image.partial = partial
 
         d2h = self._call(h2d)
 
