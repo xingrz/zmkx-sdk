@@ -15,10 +15,10 @@ pip3 install -U zmkx
 
 ## 快速上手
 
-本仓库提供了一个最简单的 [`set_image.py`](set_image.py) 演示换图功能：
+本仓库提供了一个最简单的 [`examples/set_image.py`](examples/set_image.py) 演示换图功能：
 
 ```sh
-python3 set_image.py 你的图片.jpg
+python3 examples/set_image.py 你的图片.jpg
 ```
 
 ## 命令行
