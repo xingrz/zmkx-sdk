@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    device = get_device(features=['knob'])
+    device = get_device(features=['eink'])
     if device is None:
         exit(1)
 
