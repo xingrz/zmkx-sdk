@@ -4,7 +4,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.md'), encoding='utf-8').read()
 
-version = '0.2.1'
+version = '0.3.0'
 
 setup(
     name='zmkx',
